@@ -12,11 +12,19 @@ or, more compactly
 
 */
 
+task fooBar {
+	doLast {
+		def foo = "bar"
+		println "$foo + foo = ${foo + "foo"}"
+	}
+}
+
 task stringsAndTypes {
     doLast {
         // TODO: Run `$ gradle sAT`
         println "Nice work abbreviating the task name"
-
+		
+		
         // TODO: Create a variable named foo and assign it the value 4.2
 
         // TODO: Print the value and class of foo
