@@ -8,11 +8,6 @@ that have been configured for the 'compile' configuration.
 
 Exercises:
 
-1. Configure Maven Central as a repository
-2. Add a dependency to the 'compile' configuration for the latest version
-   of commons-io.
-3. Add a file dependency that includes all the jars in the `libs` directory.
-4. Run the `printDependencies` task to verify the dependencies.
 5. Run the `printDependencies` task with the --refresh-dependencies flag.
 6. Run the `printDependencies` task one more time and note the difference in
    run time.
@@ -31,4 +26,13 @@ task printDependencies {
     doLast {
         configurations.compile.each { println it.name }
     }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+	compile fileTree(dir: 'libs', include: '*.jar')
 }
