@@ -6,9 +6,9 @@ public class JokeTeller {
 
     public String getJoke() {
         String[] jokes = new String[] {
-          "Q: How does a hurricane see? A: With its eye.",
-          "Q: What do chemists' dogs do with their bones? A: They barium!",
-          "Q: What kind of music are balloons afraid of? A: Pop Music"
+          "How does a hurricane see? //With its eye.",
+          "What do chemists' dogs do with their bones? //They barium!",
+          "What kind of music are balloons afraid of? //Pop Music"
         };
 
         return jokes[new Random().nextInt(jokes.length)];
