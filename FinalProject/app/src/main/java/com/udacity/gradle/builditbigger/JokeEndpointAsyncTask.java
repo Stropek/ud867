@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.example.joker.IntentExtrasKeys;
 import com.example.joker.JokeActivity;
@@ -18,7 +17,14 @@ import java.io.IOException;
 public class JokeEndpointAsyncTask extends AsyncTask<Context, Void, String> {
 
     private static JokeApi jokeService;
+
     private Context context;
+    private JokeEndpointAsyncTaskListener listener;
+
+    public JokeEndpointAsyncTask setListener(JokeEndpointAsyncTaskListener listener) {
+        this.listener = listener;
+        return this;
+    }
 
     @Override
     protected String doInBackground(Context... contexts) {
@@ -50,5 +56,10 @@ public class JokeEndpointAsyncTask extends AsyncTask<Context, Void, String> {
         Intent jokeIntent = new Intent(context, JokeActivity.class);
         jokeIntent.putExtra(IntentExtrasKeys.Joke, result);
         context.startActivity(jokeIntent);
+        listener.onComplete(result);
+    }
+
+    public interface JokeEndpointAsyncTaskListener {
+        void onComplete(String joke);
     }
 }
