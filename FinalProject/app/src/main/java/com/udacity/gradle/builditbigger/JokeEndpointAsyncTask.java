@@ -56,7 +56,9 @@ public class JokeEndpointAsyncTask extends AsyncTask<Context, Void, String> {
         Intent jokeIntent = new Intent(context, JokeActivity.class);
         jokeIntent.putExtra(IntentExtrasKeys.Joke, result);
         context.startActivity(jokeIntent);
-        listener.onComplete(result);
+        if (listener != null) {
+            listener.onComplete(result);
+        }
     }
 
     public interface JokeEndpointAsyncTaskListener {
